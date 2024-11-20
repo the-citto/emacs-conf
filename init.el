@@ -15,7 +15,7 @@
 
 ;; (set-fringe-mode 10)
 
-(add-to-list 'default-frame-alist '(alpha-background . 97))
+(add-to-list 'default-frame-alist '(alpha-background . 85))
 ;; (load-theme 'wombat)
 ;;(setq frame-background-mode 'dark)
 
@@ -38,13 +38,12 @@
 
 (package-initialize)
 
-;; (unless package-archive-contents
-;;   (package-refresh-contents))
-(package-refresh-contents)
+(unless package-archive-contents
+  (package-refresh-contents))
 
 ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
-   (package-install 'use-package))
+  (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -61,8 +60,9 @@
 ;; (setq kanagawa-themes-dragon-color (delq (assoc bg kanagawa-themes-dragon-color) kanagawa-themes-dragon-color))
 ;; (add-to-list 'kanagawa-themes-dragon-colors '(bg "#FFFFFF"))
 
-(display-line-numbers-mode t)
-(setq display-line-numbers 'relative)
+;; (display-line-numbers-mode t)
+;; (setq display-line-numbers 'relative)
+
 
 ;; (add-to-list 'default-frame-alist '(background-color . "#000000"))
 ;; (setq frame-background-mode 'dark)
@@ -91,16 +91,27 @@
   (evil-collection-init))
 
 
+(setq custom-file 
+  (expand-file-name
+    "emacs-custom.el"
+    user-emacs-directory))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(kanagawa-themes nordic-night-theme)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+(load custom-file)
+
+;; (global-display-line-numbers-mode t)
+;; (setq global-display-line-numbers 'relative)
+
+
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(package-selected-packages '(kanagawa-themes nordic-night-theme)))
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(line-number ((t (:background "black" :foreground "#625e5a")))))
+
